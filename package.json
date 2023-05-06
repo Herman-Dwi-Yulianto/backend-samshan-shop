@@ -1,0 +1,26 @@
+{
+  "name": "backend-samshan-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Herman-Dwi-Yulianto/backend-samshan-shop.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Herman-Dwi-Yulianto/backend-samshan-shop/issues"
+  },
+  "homepage": "https://github.com/Herman-Dwi-Yulianto/backend-samshan-shop#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.2.4"
+  }
+}
