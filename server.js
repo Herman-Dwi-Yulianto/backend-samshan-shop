@@ -1,6 +1,7 @@
 import express from "express"
+import mysql from "mysql2"
 const app = express()
-const port = 6969
+const port = 9090
 
 app.use(express.json());
 
