@@ -1,7 +1,8 @@
 const { User, Product, CartItem } = require('./index');
+import { HasMany, BelongsTo } from 'sequelize';
 
-User.hasMany(CartItem);
-CartItem.belongsTo(User);
+User.HasMany(CartItem);
+CartItem.BelongsTo(User);
 
-Product.hasMany(CartItem);
-CartItem.belongsTo(Product);
+Product.HasMany(CartItem);
+CartItem.BelongsTo(Product);

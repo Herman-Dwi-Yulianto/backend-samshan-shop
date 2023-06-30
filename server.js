@@ -1,8 +1,8 @@
 import express from "express"
-import authRoutes from "./routes/auth_routes.js";
-import customerRoutes from "./routes/customer_routes.js";
-import postRoutes from "./routes/posts_routes.js";
-import imageRoutes from "./routes/image_routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import customerRoutes from "./routes/customer.routes.js";
+import postRoutes from "./routes/posts.routes.js";
+import imageRoutes from "./routes/image.routes.js";
 import cookieParser from "cookie-parser";
 
 const app = express()

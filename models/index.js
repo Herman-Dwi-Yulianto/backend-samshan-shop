@@ -7,7 +7,7 @@ const Customer = require('./curstomer');
 const Cart = require('./cart');
 const Image = require('./image');
 const Form = require('./form');
-const Orders = require('./orders');
+const Order = require('./order');
 const Shipping = require('./shipping');
 
 // Define associations
@@ -20,7 +20,7 @@ Customer.initialize(sequelize);
 Cart.initialize(sequelize);
 Image.initialize(sequelize);
 Form.initialize(sequelize);
-Orders.initialize(sequelize);
+Order.initialize(sequelize);
 Shipping.initialize(sequelize);
 
 // Synchronize the models with the database
@@ -39,7 +39,7 @@ module.exports = {
   Cart,
   Image,
   Form,
-  Orders,
+  Order,
   Shipping,
 
   // Export other models you have defined
