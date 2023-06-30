@@ -3,7 +3,7 @@ const sequelize = require('../config/database');
 // Import models
 const Auth = require('./auth');
 const Product = require('./product');
-const Customer = require('./curstomer');
+const Customer = require('./customer');
 const Cart = require('./cart');
 const Image = require('./image');
 const Form = require('./form');
@@ -14,14 +14,14 @@ const Shipping = require('./shipping');
 require('./associations');
 
 // Initialize models
-Auth.initialize(sequelize);
-Product.initialize(sequelize);
-Customer.initialize(sequelize);
-Cart.initialize(sequelize);
-Image.initialize(sequelize);
-Form.initialize(sequelize);
-Order.initialize(sequelize);
-Shipping.initialize(sequelize);
+Auth.init(sequelize);
+Product.init(sequelize);
+Customer.init(sequelize);
+Cart.init(sequelize);
+Image.init(sequelize);
+Form.init(sequelize);
+Order.init(sequelize);
+Shipping.init(sequelize);
 
 // Synchronize the models with the database
 sequelize.sync()
