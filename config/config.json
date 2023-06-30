@@ -7,16 +7,16 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "your_username",
-    "password": "your_password",
-    "database": "your_database",
+    "username": "root",
+    "password": null,
+    "database": "database_test",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-    "username": "your_username",
-    "password": "your_password",
-    "database": "your_database",
+    "username": "root",
+    "password": null,
+    "database": "database_production",
     "host": "localhost",
     "dialect": "mysql"
   }
