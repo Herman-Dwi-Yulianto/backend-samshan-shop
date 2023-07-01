@@ -11,7 +11,7 @@ emailRouter.post("/", [authenticate], async (req, res) => {
 
   const user = req.user;
 
-  const subject = "Hóa Đơn Đặt Hàng";
+  const subject = "Samshan Shop";
   const status = false;
 
   const cartsUser = await getCartByUser(user.id);
@@ -21,7 +21,7 @@ emailRouter.post("/", [authenticate], async (req, res) => {
   }, 0);
 
   const htmlHead = `<table style="width:50%">
-    <tr style="border: 1px solid black;"><th style="border: 1px solid black;">Tên Sản Phẩm</th><th style="border: 1px solid black;">Hình Ảnh</th><th style="border: 1px solid black;">Giá</th><th style="border: 1px solid black;">Số Lượng</th><th style="border: 1px solid black;">Thành Tiền</th>`;
+    <tr style="border: 1px solid black;"><th style="border: 1px solid black;">Nama Produk</th><th style="border: 1px solid black;">Gambar</th><th style="border: 1px solid black;">harga</th><th style="border: 1px solid black;">kuantitas</th><th style="border: 1px solid black;">total</th>`;
 
   let htmlContent = "";
 
@@ -44,13 +44,13 @@ emailRouter.post("/", [authenticate], async (req, res) => {
       $</td><tr>`;
   }
   const htmlResult = `
-  <h1>Xin Chào ${fullName}</h1>
+  <h1>Hello ${fullName}</h1>
   <h3>Phone: ${phone}</h3>
   <h3>Address: ${address}</h3>
     ${htmlHead}
     ${htmlContent}
-  <h1>Tổng Thanh Toán: ${total}$
-  <p>Cảm ơn bạn!</p>
+  <h1>Total Pembayaran: ${total}$
+  <p>Terima kasih sudah berbelanja di Samshan Shop</p>
     `;
 
   const info = await sendMail(email, subject, htmlResult);

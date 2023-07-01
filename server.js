@@ -1,23 +1,71 @@
-import express from "express"
-import authRoutes from "./routes/auth.routes.js";
-import customerRoutes from "./routes/customer.routes.js";
-import postRoutes from "./routes/posts.routes.js";
-import imageRoutes from "./routes/image.routes.js";
-import cookieParser from "cookie-parser";
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const { sequelize } = require("./models");
+const rootRouter = require("./routers");
+const cookieParser = require("cookie-parser");
+const path = require("path");
+const { createMess } = require("./services/messenger");
+const app = express();
+const httpServer = require("http").createServer(app);
 
-const app = express()
-const port = 9090
+dotenv.config();
 
-app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+  },
+});
+
+const publicPathDirectory = path.join(__dirname, "public");
+app.use(express.static(publicPathDirectory));
+
 app.use(cookieParser());
+app.use(express.json());
+app.use("/api/", rootRouter);
 
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully");
+  })
+  .catch((err) => {
+    console.log("Unable to connect to the database", err);
+  });
 
+// (async () => {
+//   await sequelize.sync();
+// })();
 
-app.use("/api/auth", authRoutes);
-app.use("/api/customers", customerRoutes);
-app.use("/api/posts", postRoutes);
-app.use("/api/image", imageRoutes);
+io.on("connection", (socket) => {
+  socket.on("send_message", (data) => {
+    const dataNew = {
+      senderId: data.receiverId,
+      receiverId: data.senderId,
+      content: data.content,
+      category: "receiver",
+    };
 
-app.listen(port, () => {
-  console.log(`Server is running on ${port}`)
-})
+    createMess(dataNew);
+    socket.broadcast.emit("receive_message");
+  });
+
+  socket.on("send_order", (data) => {
+    //Xử lý xong server gửi ngược lại client admin thông qua socket với key receive_order
+    socket.broadcast.emit("receive_order", data);
+  });
+});
+
+const PORT = process.env.PORT || 8000;
+
+httpServer.listen(PORT, () => {
+  console.log(`App is running on port: ${PORT}`);
+});
