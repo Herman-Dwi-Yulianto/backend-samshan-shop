@@ -215,8 +215,8 @@ export default function HomeAdmin() {
         </div>
       </div>
       <footer className="footer text-center text-muted">
-        All Rights Reserved by Adminmart. Designed and Developed by{" "}
-        <a href="">Sang Nguyen</a>.
+        All Rights Reserved by Samshan Shop. Designed and Developed by{" "}
+        <a href="">Didi Aryadi</a>.
       </footer>
     </div>
   );
