@@ -1,7 +1,7 @@
 const nodeMailer = require("nodemailer");
 
 const adminEmail = "didi.aryadi2002@gmail.com";
-const adminPassword = "";
+const adminPassword = "Seriliexe123.";
 
 //gmail
 const mailHost = "smtp.gmail.com";

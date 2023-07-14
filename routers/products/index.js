@@ -61,45 +61,53 @@ productRouter.get("/", async (req, res) => {
   const size = Number.parseInt(req.query.size);
   const keyWordSearch = req.query.search || "";
   const category = req.query.category || "";
-  let products;
+
+  let products; // Declare the products variable here
 
   if (page && size) {
-    let start = (page - 1) * size;
-    let end = page * size;
-
     if (category === "all") {
-      products = await getListProduct();
+      products = await getListProduct(); // Retrieve products from the database
     } else {
-      products = await getProductByCategory(category);
+      products = await getProductByCategory(category); // Retrieve products by category from the database
     }
 
-    let panigationProducts = products.slice(start, end);
+    // Check if the products array is defined and not empty
+    if (products && products.length > 0) {
+      let start = (page - 1) * size;
+      let end = page * size;
 
-    if (!keyWordSearch) {
-      res.status(200).send(panigationProducts);
+      let panigationProduct = products.slice(start, end);
+
+      if (!keyWordSearch) {
+        res.status(200).send(panigationProduct);
+      } else {
+        let newProduct = panigationProduct.filter((value) => {
+          return (
+            value.name.toLowerCase().indexOf(keyWordSearch.toLowerCase()) !==
+            -1
+          );
+        });
+        res.status(200).send(newProduct);
+      }
     } else {
-      let newProduct = panigationProducts.filter((value) => {
-        return (
-          value.name.toLowerCase().indexOf(keyWordSearch.toLowerCase()) !== -1
-        );
-      });
-      res.status(200).send(newProduct);
+      res.status(200).send([]); // Return an empty array if no products found
     }
   } else if (category || keyWordSearch) {
     if (category === "all") {
-      products = await getListProduct();
+      products = await getListProduct(); // Retrieve all products from the database
     } else {
-      products = await getProductByCategory(category);
+      products = await getProductByCategory(category); // Retrieve products by category from the database
     }
     res.status(200).send(products);
   } else {
-    const products = await getListProduct();
+    products = await getListProduct(); // Retrieve all products from the database
     if (!products) {
       return res.status(500).send("Can't get panigation page");
     }
     res.status(200).send(products);
   }
 });
+
 
 productRouter.put("/:id", async (req, res) => {
   const { id } = req.params;

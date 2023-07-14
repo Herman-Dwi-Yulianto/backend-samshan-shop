@@ -30,7 +30,7 @@ app.use(express.static(publicPathDirectory));
 
 app.use(cookieParser());
 app.use(express.json());
-app.use("/api/", rootRouter);
+app.use("/api/v1", rootRouter);
 
 sequelize
   .authenticate()

@@ -15,13 +15,13 @@ export default function CartEmpty() {
       <div>
         <p className="mb-4 font-weight-normal ">
           {" "}
-          Bạn chưa có sản phẩm nào trong giỏ hàng
+          You have no items in your shopping cart
         </p>
         <NavLink
           to="/shop"
           className="text-sm text-center py-3 px-4 border border-dark bg-dark text-white hover-zoom my-5"
         >
-          TIẾP TỤC MUA SẮM
+          Go Shopping
         </NavLink>
       </div>
     </div>

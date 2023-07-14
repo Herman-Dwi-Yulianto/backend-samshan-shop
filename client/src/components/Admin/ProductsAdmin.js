@@ -405,6 +405,7 @@ export default function ProductsAdmin() {
                                 type="submit"
                                 className="btn btn-success mx-2"
                                 style={{ cursor: "pointer", color: "white" }}
+                                onClick={() => handleUpdate(item.id)}
                               >
                                 Update
                               </button>

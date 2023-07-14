@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_user1: {
-        type: Sequelize.STRING
+      senderId: {
+        type: Sequelize.INTEGER
       },
-      id_user2: {
-        type: Sequelize.STRING
+      receiverId: {
+        type: Sequelize.INTEGER
       },
       content: {
         type: Sequelize.TEXT
