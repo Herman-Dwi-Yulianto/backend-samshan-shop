@@ -8,6 +8,14 @@ const messengerRouter = require("./messengers");
 const historyRouter = require("./history");
 
 const rootRouter = express.Router();
+const app = express();
+const port = process.env.port || 3000;
+
+app.get("/",(req, res)=>res.send("Hello world"));
+app.get("/ping",(req, res)=>res.send("Pong"));
+app.get("/felix",(req, res)=>res.send("Liawi"));
+
+app.listen(port,()=>console.log('server is listening on port ${port}'));
 
 rootRouter.use("/users", userRouter);
 rootRouter.use("/products", productRouter);
